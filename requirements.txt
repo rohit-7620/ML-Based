@@ -1,10 +1,9 @@
 # Ultra-Lightweight Serverless Requirements
-# Target: < 300 MB total (Vercel limit: 500 MB)
-# Using ONLY essential packages, NO scipy/heavy dependencies
+# Python 3.12 Compatible - Total Size: < 300 MB
 
-pandas==2.0.3
-numpy==1.24.3
-scikit-learn==1.3.2
+pandas==2.1.3
+numpy==1.26.3
+scikit-learn==1.4.0
 Flask==3.0.0
 Flask-CORS==4.0.0
 gunicorn==21.2.0
