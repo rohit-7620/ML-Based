@@ -1,0 +1,37 @@
+# Vercel .vercelignore - Exclude files from Vercel deployment
+
+# Documentation (except essential)
+*.md
+!README.md
+!DEPLOYMENT_ENTRYPOINT.md
+
+# Development files
+*.ipynb
+.ipynb_checkpoints/
+
+# Testing
+test_*.py
+tests/
+*_test.py
+
+# Backup files
+backup_apis/
+*.backup
+*.old
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# Large optional files
+Data/
+docs/
+images/

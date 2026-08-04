@@ -1,0 +1,52 @@
+# Heroku .slugignore - Exclude files from deployment slug
+# This reduces slug size and speeds up deployment
+
+# Documentation
+*.md
+!README.md
+!DEPLOYMENT_ENTRYPOINT.md
+
+# Development files
+*.ipynb
+.ipynb_checkpoints/
+jupyter_notebook_config.py
+
+# Testing
+test_*.py
+tests/
+*_test.py
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backup files
+backup_apis/
+*.backup
+*.old
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Documentation images
+docs/
+images/
+screenshots/
+
+# Large data files (if any)
+*.csv.gz
+*.parquet
+
+# Environment files
+.env.example
+.env.sample

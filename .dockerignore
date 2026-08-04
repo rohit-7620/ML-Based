@@ -1,0 +1,54 @@
+# Docker .dockerignore - Exclude files from Docker build context
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation
+*.md
+!README.md
+
+# Testing
+test_*.py
+tests/
+*_test.py
+.pytest_cache/
+
+# Backup files
+backup_apis/
+*.backup
+*.old
+
+# Development files
+*.ipynb
+.ipynb_checkpoints/
+jupyter_notebook_config.py
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+tmp/
+temp/

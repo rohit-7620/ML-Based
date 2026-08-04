@@ -144,6 +144,7 @@ ehthumbs.db
 Thumbs.db
 
 # Model files (optional - uncomment if you don't want to version control model files)
+# IMPORTANT: For deployment, consider using cloud storage for large model files
 # *.pkl
 # *.joblib
 # *.model
@@ -152,3 +153,9 @@ Thumbs.db
 backup_apis/
 *.backup
 *.old
+
+# Large data files
+*.csv.gz
+*.parquet
+*.h5
+*.hdf5
