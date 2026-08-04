@@ -147,3 +147,8 @@ Thumbs.db
 # *.pkl
 # *.joblib
 # *.model
+
+# Backup files
+backup_apis/
+*.backup
+*.old

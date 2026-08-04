@@ -394,11 +394,18 @@ def batch_grade_prediction():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
+    import os
+    
     print("=" * 70)
     print("🚀 ML-Based LMS Intelligence Platform - Web Application")
     print("=" * 70)
     print("\n🌐 Starting web server...")
-    print(f"📍 Access the application at: http://localhost:5000")
+    
+    # Get port from environment (for deployment platforms) or default to 5000
+    port = int(os.environ.get('PORT', 5000))
+    debug_mode = os.environ.get('FLASK_ENV') == 'development'
+    
+    print(f"📍 Access the application at: http://localhost:{port}")
     print("\nAvailable Endpoints:")
     print("  🏠 GET  /                  - Web Interface")
     print("  💚 GET  /health            - Health Check")
@@ -408,4 +415,4 @@ if __name__ == '__main__':
     print("  ℹ️  GET  /models/info      - Model Information")
     print("\n" + "=" * 70)
     
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=debug_mode, host='0.0.0.0', port=port)
