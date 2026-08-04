@@ -294,10 +294,5 @@ For technical issues or questions:
 3. Validate input data format
 4. Check server logs for detailed error messages
 
-## 📄 License
 
-This project is developed for educational and research purposes. Please ensure compliance with your institution's data privacy and AI ethics guidelines.
-
----
-
-**Built with ❤️ for educational excellence**
+**Built by Rohit Salke**
