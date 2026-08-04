@@ -1,0 +1,29 @@
+{
+  "saved_at": "2026-08-04T21:17:29.302084",
+  "confidence_threshold": 0.5,
+  "classes": [
+    "High",
+    "Low",
+    "Medium"
+  ],
+  "departments": [
+    "Academic Office",
+    "Administration",
+    "Examination Cell",
+    "Finance Office",
+    "Hostel Office",
+    "IT Support",
+    "Library"
+  ],
+  "classifier_type": "LogisticRegression",
+  "vectorizer_params": {
+    "max_features": 1000,
+    "stop_words": "english"
+  },
+  "performance": {
+    "accuracy": 1.0,
+    "auto_approval_rate": 1.0,
+    "optimal_threshold": 0.5,
+    "test_samples": 1200
+  }
+}

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML-Based Grading & Doubt Triage System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-wrapper">
+        <!-- Navigation -->
+        <nav class="doc-nav">
+            <a href="/" class="nav-link active">🏠 Home</a>
+            <a href="/documentation" class="nav-link">📚 Documentation</a>
+            <a href="/about" class="nav-link">ℹ️ About</a>
+        </nav>
+        
+        <div class="container">
+            <header class="header">
+                <div class="header-icon">🎓</div>
+                <h1>ML-Based LMS Intelligence Platform</h1>
+                <p>Automated Grading & Intelligent Doubt Triage System</p>
+                <div id="status-badge" class="status-badge">🟡 Checking...</div>
+            </header>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" data-tab="grade">📊 Grade Prediction</button>
+            <button class="tab-btn" data-tab="triage">💬 Doubt Triage</button>
+            <button class="tab-btn" data-tab="batch">📦 Batch Processing</button>
+            <button class="tab-btn" data-tab="info">ℹ️ Model Info</button>
+        </div>
+
+        <!-- Grade Prediction Tab -->
+        <div id="grade-tab" class="tab-content active">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon">📊</span>
+                        Student Grade Prediction
+                    </h2>
+                </div>
+
+                <div class="alert alert-info">
+                    ℹ️ Enter student performance metrics to predict their final grade with confidence scoring.
+                </div>
+
+                <!-- Quick Fill Buttons -->
+                <div style="margin-bottom: 20px;">
+                    <strong>Quick Fill Examples:</strong>
+                    <div class="feature-pills">
+                        <button class="feature-pill quick-fill-btn" data-profile="high">🌟 High Performer</button>
+                        <button class="feature-pill quick-fill-btn" data-profile="average">📈 Average Student</button>
+                        <button class="feature-pill quick-fill-btn" data-profile="low">📉 Struggling Student</button>
+                    </div>
+                </div>
+
+                <form id="grade-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="attendance">Attendance Percentage</label>
+                            <input type="number" id="attendance" class="form-input" min="0" max="100" step="0.1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="quiz_avg">Quiz Average</label>
+                            <input type="number" id="quiz_avg" class="form-input" min="0" max="100" step="0.1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="assignment_avg">Assignment Average</label>
+                            <input type="number" id="assignment_avg" class="form-input" min="0" max="100" step="0.1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="midterm">Midterm Score</label>
+                            <input type="number" id="midterm" class="form-input" min="0" max="100" step="0.1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="participation">Participation Score (0-10)</label>
+                            <input type="number" id="participation" class="form-input" min="0" max="10" step="0.1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="study_hours">Study Hours per Week</label>
+                            <input type="number" id="study_hours" class="form-input" min="0" max="168" step="0.5" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="gpa">Previous GPA (0-4)</label>
+                            <input type="number" id="gpa" class="form-input" min="0" max="4" step="0.01" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        🔮 Predict Grade
+                    </button>
+                </form>
+
+                <div id="grade-result" class="result-card" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Triage Tab -->
+        <div id="triage-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon">💬</span>
+                        Student Doubt Triage
+                    </h2>
+                </div>
+
+                <div class="alert alert-info">
+                    ℹ️ Enter a student query to automatically classify priority and route to appropriate channels.
+                </div>
+
+                <form id="triage-form">
+                    <div class="form-group">
+                        <label class="form-label" for="student_query">Student Query</label>
+                        <textarea id="student_query" class="form-textarea" rows="4" required 
+                            placeholder="e.g., I cannot download my hall ticket for tomorrow's exam..."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="department">Department</label>
+                            <select id="department" class="form-select" required>
+                                <option value="">Select Department</option>
+                                <option value="IT Support">IT Support</option>
+                                <option value="Administration">Administration</option>
+                                <option value="Academic Office">Academic Office</option>
+                                <option value="Finance Office">Finance Office</option>
+                                <option value="Examination Cell">Examination Cell</option>
+                                <option value="Library">Library</option>
+                                <option value="Hostel Office">Hostel Office</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="days_to_deadline">Days to Deadline</label>
+                            <input type="number" id="days_to_deadline" class="form-input" min="0" max="365" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        🔍 Analyze & Triage
+                    </button>
+                </form>
+
+                <div id="triage-result" class="result-card" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Batch Processing Tab -->
+        <div id="batch-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon">📦</span>
+                        Batch Grade Prediction
+                    </h2>
+                </div>
+
+                <div class="alert alert-info">
+                    ℹ️ Upload student data in CSV format for batch predictions.
+                </div>
+
+                <form id="batch-form">
+                    <div class="form-group">
+                        <label class="form-label" for="batch_csv">Student Data (CSV Format)</label>
+                        <textarea id="batch_csv" class="form-textarea" rows="10" required
+                            placeholder="attendance,quiz_avg,assignment_avg,midterm,participation,study_hours,gpa
+95.0,88.5,92.0,87.0,9.2,20.0,3.8
+78.0,72.5,75.0,74.0,6.5,12.0,3.0
+65.0,58.5,62.0,55.0,4.2,8.0,2.3"></textarea>
+                        <small style="color: var(--text-secondary); display: block; margin-top: 8px;">
+                            Format: attendance,quiz_avg,assignment_avg,midterm,participation,study_hours,gpa
+                        </small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        📊 Process Batch
+                    </button>
+                </form>
+
+                <div id="batch-result" class="result-card" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Model Info Tab -->
+        <div id="info-tab" class="tab-content">
+            <div id="model-info-container">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <span class="card-icon">ℹ️</span>
+                            Model Information
+                        </h2>
+                    </div>
+                    <p style="text-align: center; color: var(--text-secondary);">Loading model information...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-title">🎓 ML-Based LMS Intelligence Platform</div>
+            <div class="footer-subtitle">Powered by Machine Learning & Advanced Analytics</div>
+            
+            <div class="footer-divider"></div>
+            
+            <div class="footer-credits">
+                Developed by <span class="author-name">Rohit Salke</span>
+            </div>
+            
+            <div class="footer-links">
+                <a href="https://github.com/rohit-7620/ML-Based-Grading-Doubt-Triage-Pipeline.git" target="_blank" class="footer-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub Repository
+                </a>
+                
+                <a href="https://github.com/rohit-7620" target="_blank" class="footer-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
+                    GitHub Profile
+                </a>
+                
+                <a href="https://www.linkedin.com/in/rohit-salke-10b8a9289/" target="_blank" class="footer-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn Profile
+                </a>
+            </div>
+            
+            <div class="footer-tech">
+                <strong>Built with:</strong>
+                <div style="margin-top: 10px;">
+                    <span class="tech-badge">🐍 Python</span>
+                    <span class="tech-badge">🤖 scikit-learn</span>
+                    <span class="tech-badge">🔥 Flask</span>
+                    <span class="tech-badge">📊 Pandas</span>
+                    <span class="tech-badge">🎨 HTML5/CSS3</span>
+                    <span class="tech-badge">⚡ JavaScript</span>
+                    <span class="tech-badge">🌲 GradientBoosting</span>
+                    <span class="tech-badge">💬 NLP</span>
+                </div>
+            </div>
+            
+            <div class="footer-year">
+                © 2026 | All rights reserved
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Processing your request...</p>
+        </div>
+    </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
