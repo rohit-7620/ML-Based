@@ -1,37 +1,58 @@
-# Vercel .vercelignore - Exclude files from Vercel deployment
+# Aggressive exclusions for Vercel - keep bundle under 500MB
+# Vercel .vercelignore - Exclude all non-essential files
 
-# Documentation (except essential)
-*.md
-!README.md
-!DEPLOYMENT_ENTRYPOINT.md
+# Large directories
+Data/
+docs/
+images/
+backup_apis/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+node_modules/
+venv/
+env/
 
 # Development files
 *.ipynb
-.ipynb_checkpoints/
+*.pyc
+*.pyo
+*.pyd
+*.so
+.DS_Store
+Thumbs.db
 
 # Testing
 test_*.py
 tests/
 *_test.py
-
-# Backup files
-backup_apis/
-*.backup
-*.old
-
-# Python cache
-__pycache__/
-*.pyc
+pytest.ini
 
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
 
 # Git
 .git/
 .gitignore
+.gitattributes
 
-# Large optional files
-Data/
-docs/
-images/
+# Documentation (keep only essential)
+*.md
+DEPLOYMENT_*
+!README.md
+
+# Optional development tools
+setup.py
+setup.cfg
+tox.ini
+.coverage
+coverage.xml
+
+# Temporary
+*.tmp
+*.log
+tmp/
+temp/

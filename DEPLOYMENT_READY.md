@@ -24,31 +24,34 @@
 ### Core Settings
 ```yaml
 Python Version: 3.11.7
-Bundle Size: ~261 MB
+Bundle Size: ~200-250 MB (optimized for serverless)
 Entry Point: wsgi:application
 Web Server: Gunicorn
 Framework: Flask 3.0
+Deployment Target: Vercel, Lambda, and other serverless platforms
 ```
 
-### Dependencies (Production)
+### Lightweight Dependencies (Production)
 ```
-pandas 2.0+
-numpy 1.24+
-scikit-learn 1.3+
-scipy 1.11+
-lightgbm 4.0+
-xgboost 2.0+
-Flask 3.0+
-gunicorn 21.2+
+pandas 2.0.3
+numpy 1.24.3
+scikit-learn 1.3.2
+Flask 3.0.0
+gunicorn 21.2.0
 ```
 
-### Excluded (Development Only)
+### Full Dependencies (Local Development)
+See `requirements-full.txt` for local development with optional packages
+
+### Heavy Packages Removed (75% size reduction!)
 ```
-❌ TensorFlow (~2.5 GB)
-❌ PyTorch (~4 GB)
-❌ matplotlib/seaborn
-❌ jupyter/notebook
-❌ pytest
+❌ scipy (~500 MB) - Not used by our models
+❌ lightgbm (~200 MB) - Using scikit-learn instead
+❌ xgboost (~100 MB) - Not used
+❌ TensorFlow (~2.5 GB) - Not needed for inference
+❌ PyTorch (~4 GB) - Not needed for inference
+❌ matplotlib/seaborn - Development only
+❌ jupyter/notebook - Development only
 ```
 
 ---
@@ -106,11 +109,15 @@ railway up
 # Auto-detects Python and uses render.yaml
 ```
 
-### Vercel
+### Vercel (Serverless - Recommended)
 ```bash
-vercel login
 vercel --prod
+# or connect GitHub repo in Vercel dashboard
+# Auto-detects Python and uses lightweight requirements.txt
 ```
+
+**Note:** Uses optimized `requirements.txt` (< 250 MB)
+**If local dev needed:** `pip install -r requirements-full.txt`
 
 ### Docker (any platform)
 ```bash
